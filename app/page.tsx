@@ -272,9 +272,11 @@ export default function Haptics() {
 <span 
   style={{ 
     cursor: 'help', 
-    borderBottom: `2px dashed ${Math.abs(recipe.errorMargin) > 5 ? '#dc2626' : '#a3a3a3'}`,
+    display: 'inline-block',
+    borderBottom: `3px dashed ${Math.abs(recipe.errorMargin) > 5 ? '#dc2626' : '#737373'}`,
     color: Math.abs(recipe.errorMargin) > 5 ? '#dc2626' : '#000',
-    paddingBottom: '2px'
+    marginBottom: '4px',
+    lineHeight: '1'
   }}
   title="Error Margin: The weight difference between the digital CAD and the physical junk model."
 >
