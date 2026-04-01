@@ -67,7 +67,7 @@ function VisualAssemblyMap({ imageSrc, highlights }: { imageSrc: string; highlig
           <g key={index}>
             <circle cx={pin.xPercent} cy={pin.yPercent} r="3" fill={pin.hexColor} stroke="white" strokeWidth="0.5" className="animate-pulse" />
             <text x={pin.xPercent + 4} y={pin.yPercent + 1} fill="white" fontSize="4" fontWeight="bold" className="font-sans uppercase tracking-tight">
-               {(index+1)}. {pin.label}
+                {(index+1)}. {pin.label}
             </text>
           </g>
         ))}
@@ -140,7 +140,7 @@ export default function Haptics() {
       const json = await res.json();
       if (!res.ok) throw new Error(json.error);
       
-      json.data.estimatedMassGrams = mass; // Enforce explicit mass
+      json.data.estimatedMassGrams = mass; 
       setAnalysis(json.data); setAppState('RESULT');
     } catch (err: any) { setError(err.message); } finally { setIsAnalyzing(false); }
   };
@@ -152,15 +152,12 @@ export default function Haptics() {
 
   return (
     <main className="min-h-screen bg-black text-white font-sans selection:bg-white selection:text-black flex flex-col">
-      {/* GLOBAL HEADER */}
       <header className="p-8 border-b-2 border-neutral-800 flex justify-between items-center cursor-pointer hover:text-gray-300" onClick={resetApp}>
         <h1 className="text-2xl font-black tracking-tighter uppercase">Haptics</h1>
         <span className="text-xs font-mono uppercase tracking-widest text-gray-500">Reset Engine</span>
       </header>
 
       <div className="flex-grow flex flex-col items-center justify-center p-8 md:p-12">
-        
-        {/* STATE: HOME */}
         {appState === 'HOME' && (
           <div className="max-w-4xl w-full flex flex-col items-center text-center animate-in fade-in slide-in-from-bottom-4 duration-500">
             <h2 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-6 leading-none">Stop guessing mass.</h2>
@@ -180,7 +177,6 @@ export default function Haptics() {
           </div>
         )}
 
-        {/* STATE: MANUAL INPUT (Now wired to AI) */}
         {appState === 'MANUAL' && (
           <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 animate-in fade-in duration-500">
             <div className="flex flex-col">
@@ -214,7 +210,6 @@ export default function Haptics() {
           </div>
         )}
 
-        {/* STATE: VISION INPUT */}
         {appState === 'VISION' && (
           <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-[1fr,minmax(350px,400px)] gap-12 animate-in fade-in duration-500">
             <div className="flex flex-col">
@@ -255,10 +250,8 @@ export default function Haptics() {
           </div>
         )}
 
-        {/* STATE: RESULT */}
         {appState === 'RESULT' && recipe && analysis && (
           <div className="max-w-screen-2xl w-full flex flex-col space-y-12 animate-in fade-in duration-500">
-            
             <div className={`p-8 md:p-12 border-4 ${analysis.primaryVerdictHeading.includes('FAIL') || analysis.primaryVerdictHeading.includes('FATAL') ? 'border-red-600 bg-red-900/10' : 'border-white'} animate-in fade-in slide-in-from-top-4 duration-500`}>
               <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-4 leading-none text-white">{analysis.primaryVerdictHeading}</h2>
               <div className="grid grid-cols-1 md:grid-cols-[1fr,auto] gap-6 text-neutral-400 font-medium lowercase first-letter:uppercase">
@@ -277,11 +270,11 @@ export default function Haptics() {
                 <div className="font-mono font-bold text-neutral-500 border-b-4 border-black pb-8 mb-8 flex justify-between uppercase">
                   <span>TARGET MASS: {targetMass.toFixed(1)}g</span>
                   <span 
-  className={`cursor-help border-b-4 border-dotted border-neutral-300 hover:border-black transition-colors ${Math.abs(recipe.errorMargin) > 5 ? 'text-red-600 border-red-300 hover:border-red-600' : 'text-black'}`} 
-  title="Error Margin: The weight difference between the digital CAD and the physical junk model."
->
-  DELTA: {recipe.errorMargin > 0 ? '+' : ''}{recipe.errorMargin.toFixed(1)}%
-</span>
+                    className={`cursor-help border-b-4 border-dotted border-neutral-300 hover:border-black transition-colors ${Math.abs(recipe.errorMargin) > 5 ? 'text-red-600 border-red-300 hover:border-red-600' : 'text-black'}`} 
+                    title="Error Margin: The weight difference between the digital CAD and the physical junk model."
+                  >
+                    DELTA: {recipe.errorMargin > 0 ? '+' : ''}{recipe.errorMargin.toFixed(1)}%
+                  </span>
                 </div>
                 
                 <ul className="space-y-6">
@@ -311,7 +304,6 @@ export default function Haptics() {
         )}
       </div>
 
-      {/* FOOTER - Morse Code Lockup */}
       <footer className="w-full border-t-2 border-neutral-800 p-6 text-center mt-auto">
         <span className="font-mono text-[10px] text-neutral-600 uppercase tracking-widest block opacity-50 hover:opacity-100 transition-opacity">
           Made by <span className="font-bold">... .- .- -.. / .- .... -- . -.. / ... .... .- .. -.- ....</span>
