@@ -270,20 +270,23 @@ export default function Haptics() {
                 <div className="font-mono font-bold text-neutral-500 border-b-4 border-black pb-8 mb-8 flex justify-between uppercase">
                   <span>TARGET MASS: {targetMass.toFixed(1)}g</span>
 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-  <span 
-    style={{ 
-      cursor: 'help', 
-      fontSize: '14px',
-      fontWeight: 'bold',
-      color: Math.abs(recipe.errorMargin) > 5 ? '#dc2626' : '#737373',
-      borderBottom: `2px dashed ${Math.abs(recipe.errorMargin) > 5 ? '#dc2626' : '#a3a3a3'}`,
-      paddingBottom: '2px',
-      marginBottom: '4px'
-    }}
-    title="Error Margin: The weight difference between the digital CAD and the physical junk model."
-  >
-    DELTA: {recipe.errorMargin > 0 ? '+' : ''}{recipe.errorMargin.toFixed(1)}%
-  </span>
+<div 
+  title="Error Margin: The weight difference between the digital CAD and the physical junk model."
+  style={{ 
+    cursor: 'help',
+    padding: '4px 8px',
+    border: `2px solid ${Math.abs(recipe.errorMargin) > 5 ? '#dc2626' : '#000'}`,
+    background: Math.abs(recipe.errorMargin) > 5 ? '#fef2f2' : 'transparent',
+    color: Math.abs(recipe.errorMargin) > 5 ? '#dc2626' : '#000',
+    fontSize: '12px',
+    fontWeight: '900',
+    textTransform: 'uppercase',
+    letterSpacing: '0.05em',
+    display: 'inline-block'
+  }}
+>
+  DELTA: {recipe.errorMargin > 0 ? '+' : ''}{recipe.errorMargin.toFixed(1)}%
+</div>
 </div>
                 </div>
                 
