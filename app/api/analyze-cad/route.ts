@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI, SchemaType, Schema } from '@google/generative-ai';
 import { NextResponse } from 'next/server';
 
-export const runtime = 'edge';
+export const runtime = 60;
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
 
 const cadAnalysisSchema: Schema = {
