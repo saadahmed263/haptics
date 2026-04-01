@@ -269,12 +269,12 @@ export default function Haptics() {
                 <h3 className="text-6xl font-black uppercase tracking-tighter mb-2">Recipe</h3>
                 <div className="font-mono font-bold text-neutral-500 border-b-4 border-black pb-8 mb-8 flex justify-between uppercase">
                   <span>TARGET MASS: {targetMass.toFixed(1)}g</span>
-                  <span 
-                    className={`cursor-help border-b-4 border-dotted border-neutral-300 hover:border-black transition-colors ${Math.abs(recipe.errorMargin) > 5 ? 'text-red-600 border-red-300 hover:border-red-600' : 'text-black'}`} 
-                    title="Error Margin: The weight difference between the digital CAD and the physical junk model."
-                  >
-                    DELTA: {recipe.errorMargin > 0 ? '+' : ''}{recipe.errorMargin.toFixed(1)}%
-                  </span>
+                 <span 
+  className={`cursor-help border-b-2 border-dashed transition-all ${Math.abs(recipe.errorMargin) > 5 ? 'text-red-600 border-red-600' : 'text-black border-neutral-400 hover:border-black'}`} 
+  title="Error Margin: The weight difference between the digital CAD and the physical junk model."
+>
+  DELTA: {recipe.errorMargin > 0 ? '+' : ''}{recipe.errorMargin.toFixed(1)}%
+</span>
                 </div>
                 
                 <ul className="space-y-6">
