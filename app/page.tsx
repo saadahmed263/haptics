@@ -267,7 +267,7 @@ export default function Haptics() {
             <div className="grid grid-cols-1 lg:grid-cols-[2fr,minmax(400px,1fr)] gap-12">
               <div className="bg-white text-black p-8 md:p-12">
                 <h3 className="text-6xl font-black uppercase tracking-tighter mb-2">Recipe</h3>
-                <div className="font-mono font-bold text-neutral-500 border-b-4 border-black pb-8 mb-8 flex justify-between uppercase">
+               <div className="font-mono font-bold text-neutral-500 border-b-4 border-black pb-8 mb-8 flex justify-between uppercase">
   <span>TARGET MASS: {targetMass.toFixed(1)}g</span>
   <span className={Math.abs(recipe.errorMargin) > 5 ? 'text-red-600 font-black' : 'text-black font-black'}>
     DELTA (WEIGHT DIFF): {recipe.errorMargin > 0 ? '+' : ''}{recipe.errorMargin.toFixed(1)}%
