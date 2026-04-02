@@ -7,7 +7,7 @@ const householdItems = [
   { id: 'steel-bottle', name: 'Stainless Steel Water Bottle (1L, Empty)', mass: 250 },
   { id: 'smartphone', name: 'Standard Smartphone', mass: 204 },
   { id: 'tea-cup', name: 'Ceramic Tea Cup', mass: 120 },
-  { id: 'parle-g', name: 'Biscuit Packet (approx. 50g)', mass: 50 },
+  { id: 'parle-g', name: 'Biscuit Packet (Approx. 50g)', mass: 50 },
   { id: 'steel-spoon', name: 'Standard Steel Tablespoon', mass: 40 },
   { id: 'battery-aa', name: 'AA Battery', mass: 23 },
   { id: 'eraser', name: 'Non-Dust Eraser', mass: 20 },
@@ -121,7 +121,7 @@ export default function Haptics() {
 
   const handleManualSubmit = async () => {
     const mass = parseFloat(manualInput);
-    if (isNaN(mass) || mass <= 0) return setError("Enter a valid metric mass.");
+    if (isNaN(mass) || mass <= 0) return setError("Please enter a valid target mass in grams.");
     setError(null); setIsAnalyzing(true); setAnalysis(null);
 
     try {
@@ -152,18 +152,18 @@ export default function Haptics() {
       <div className="flex-grow flex flex-col items-center justify-center p-8 md:p-12">
         {appState === 'HOME' && (
           <div className="max-w-4xl w-full flex flex-col items-center text-center animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <h2 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-6 leading-none">Stop guessing mass.</h2>
-            <p className="text-xl md:text-2xl text-neutral-400 font-medium max-w-2xl mb-16 lowercase first-letter:uppercase leading-snug">
-              CAD blindness causes ergonomic failure. Convert your digital mass into a junk-drawer model in seconds. Feel it before you print it. Asian context. Metric only.
+            <h2 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-6 leading-none">Stop Guessing Mass.</h2>
+            <p className="text-xl md:text-2xl text-neutral-400 font-medium max-w-2xl mb-16 leading-snug">
+              CAD blindness causes ergonomic failure. Convert your digital mass into a physical junk-drawer model in seconds. Feel your design before you print it.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
               <button onClick={() => setAppState('VISION')} className="group flex flex-col items-start p-8 border-4 border-neutral-800 hover:border-white transition-colors text-left bg-neutral-900">
                 <span className="text-3xl font-black uppercase mb-2">Analyze Annotated Sketch</span>
-                <span className="text-neutral-500 group-hover:text-neutral-300 font-mono text-sm lowercase first-letter:uppercase">Upload CAD with material callouts. AI calculates mass & ergonomics.</span>
+                <span className="text-neutral-500 group-hover:text-neutral-300 font-mono text-sm uppercase">Upload CAD with material callouts. AI calculates mass and ergonomics.</span>
               </button>
               <button onClick={() => setAppState('MANUAL')} className="group flex flex-col items-start p-8 border-4 border-neutral-800 hover:border-white transition-colors text-left bg-neutral-900">
                 <span className="text-3xl font-black uppercase mb-2">Input Exact Grams</span>
-                <span className="text-neutral-500 group-hover:text-neutral-300 font-mono text-sm lowercase first-letter:uppercase">Directly input known target weight for instant ergonomic routing.</span>
+                <span className="text-neutral-500 group-hover:text-neutral-300 font-mono text-sm uppercase">Directly input a known target weight for instant ergonomic routing.</span>
               </button>
             </div>
           </div>
@@ -171,8 +171,8 @@ export default function Haptics() {
 
         {appState === 'MANUAL' && (
           <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 animate-in fade-in duration-500">
-            <div className="flex flex-col">
-              <label className="text-3xl font-black uppercase mb-6 text-white block">Target Mass</label>
+            <div className="flex flex-col text-left">
+              <label className="text-3xl font-black uppercase mb-6 text-white block">Target Mass (Grams)</label>
               <div className="bg-neutral-900 p-12 border-4 border-neutral-800 h-full flex flex-col justify-center">
                  <input
                     type="number" autoFocus
@@ -183,12 +183,12 @@ export default function Haptics() {
                   />
               </div>
             </div>
-            <div className="flex flex-col space-y-6 pt-0 md:pt-[5.5rem]">
+            <div className="flex flex-col space-y-6 pt-0 md:pt-[5.5rem] text-left">
               <div className="p-6 border-4 border-neutral-800 bg-neutral-900">
-                <label className="text-xl font-bold uppercase mb-2 block text-gray-400">Context & Intent</label>
+                <label className="text-xl font-bold uppercase mb-2 block text-gray-400">Context and Intent</label>
                 <textarea
                   value={userDescription} onChange={(e) => setUserDescription(e.target.value)}
-                  placeholder="E.g., Handheld TV remote."
+                  placeholder="Example: This is a handheld TV remote."
                   className="w-full h-32 bg-black border-2 border-neutral-700 p-4 text-sm font-mono focus:border-white focus:outline-none placeholder-neutral-700"
                 />
               </div>
@@ -202,7 +202,7 @@ export default function Haptics() {
         {appState === 'VISION' && (
           <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-[1fr,minmax(350px,400px)] gap-12 animate-in fade-in duration-500">
             <div className="flex flex-col text-left">
-              <h3 className="text-3xl font-black uppercase mb-6">Upload Sketch</h3>
+              <h3 className="text-3xl font-black uppercase mb-6">Upload Design Sketch</h3>
               <div className="border-4 border-dashed border-neutral-700 hover:border-white transition-colors relative flex flex-col items-center justify-center p-20 text-center min-h-[400px] bg-neutral-900">
                 <input type="file" accept="image/*" onChange={handleImageChange} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
                 {imageBase64 ? (
@@ -210,21 +210,21 @@ export default function Haptics() {
                      <img src={imagePreview!} alt="Selected Design" className="w-full h-full object-contain grayscale opacity-60" />
                    </div>
                 ) : (
-                   <span className="font-mono text-2xl uppercase text-neutral-500 pointer-events-none">Drop Design Image</span>
+                   <span className="font-mono text-2xl uppercase text-neutral-500 pointer-events-none">Drop Design Image Here</span>
                 )}
               </div>
             </div>
-            <div className="flex flex-col space-y-6 pt-16">
+            <div className="flex flex-col space-y-6 pt-16 text-left">
               <div className="p-6 border-4 border-neutral-800 bg-neutral-900">
-                <label className="text-xl font-bold uppercase mb-2 block text-gray-400">Context (Optional)</label>
+                <label className="text-xl font-bold uppercase mb-2 block text-gray-400">Design Constraints (Optional)</label>
                 <textarea
                   value={userDescription} onChange={(e) => setUserDescription(e.target.value)}
-                  placeholder="E.g., Weight must be <30g."
+                  placeholder="Example: Weight must be under 30g."
                   className="w-full h-32 bg-black border-2 border-neutral-700 p-4 text-sm font-mono focus:border-white focus:outline-none placeholder-neutral-700"
                 />
               </div>
               <button onClick={handleVisionSubmit} disabled={isAnalyzing} className="bg-white text-black text-3xl font-black uppercase py-6 px-8 hover:bg-neutral-300 w-full text-left disabled:opacity-50">
-                {isAnalyzing ? "Analyzing..." : "Analyze Design ->"}
+                {isAnalyzing ? "Analyzing Design..." : "Analyze Design ->"}
               </button>
             </div>
           </div>
@@ -234,11 +234,11 @@ export default function Haptics() {
           <div className="max-w-screen-2xl w-full flex flex-col space-y-12 animate-in fade-in duration-500 text-left">
             <div className={`p-8 md:p-12 border-4 ${analysis.primaryVerdictHeading.includes('FAIL') ? 'border-red-600 bg-red-900/10' : 'border-white'}`}>
               <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-4 leading-none text-white">{analysis.primaryVerdictHeading}</h2>
-              <div className="grid grid-cols-1 md:grid-cols-[1fr,auto] gap-6 text-neutral-400 font-medium lowercase first-letter:uppercase">
+              <div className="grid grid-cols-1 md:grid-cols-[1fr,auto] gap-6 text-neutral-400 font-medium">
                  <p className="max-w-3xl text-lg leading-relaxed">{analysis.primaryVerdictBody}</p>
-                 <p className="max-w-3xl text-lg leading-relaxed text-gray-100">{analysis.suggestedJunkSimulations}</p>
+                 <p className="max-w-3xl text-lg leading-relaxed text-gray-100 italic">{analysis.suggestedJunkSimulations}</p>
                  <div className="font-mono text-xs text-neutral-600 text-right uppercase pt-1 min-w-[200px]">
-                    Category: {analysis.objectCategory} | confidence: {(analysis.confidence * 100).toFixed(0)}%
+                    Category: {analysis.objectCategory} | Confidence: {(analysis.confidence * 100).toFixed(0)}%
                  </div>
               </div>
             </div>
@@ -247,19 +247,19 @@ export default function Haptics() {
               <div className="bg-white text-black p-8 md:p-12">
                 <h3 className="text-6xl font-black uppercase tracking-tighter mb-2">Recipe</h3>
                 <div className="font-mono font-bold text-neutral-500 border-b-4 border-black pb-8 mb-8 flex justify-between uppercase">
-                  <span>TARGET MASS: {targetMass.toFixed(1)}g</span>
-                  <span className="text-black font-black">DELTA (WEIGHT DIFF): {recipe.errorMargin > 0 ? '+' : ''}{recipe.errorMargin.toFixed(1)}%</span>
+                  <span>Target Mass: {targetMass.toFixed(1)}g</span>
+                  <span className="text-black font-black">Delta (Weight Diff): {recipe.errorMargin > 0 ? '+' : ''}{recipe.errorMargin.toFixed(1)}%</span>
                 </div>
                 
                 <ul className="space-y-6">
                   {recipe.items.map((item, idx) => (
                     <li key={idx} className="flex justify-between items-end border-b-2 border-neutral-300 pb-2">
-                      <span className="text-2xl md:text-3xl font-bold uppercase"><span className="text-neutral-400 mr-2 lowercase">{item.count}×</span>{item.name}</span>
+                      <span className="text-2xl md:text-3xl font-bold uppercase"><span className="text-neutral-400 mr-2">{item.count}×</span>{item.name}</span>
                       <span className="font-mono text-xl">{item.totalMass.toFixed(1)}g</span>
                     </li>
                   ))}
                   <li className="pt-8 flex justify-between items-end uppercase">
-                    <span className="font-black uppercase text-2xl">Junk Total:</span>
+                    <span className="font-black uppercase text-2xl">Junk Model Total:</span>
                     <span className="font-mono text-4xl block font-black">{recipe.total.toFixed(1)}g</span>
                   </li>
                 </ul>
@@ -273,7 +273,7 @@ export default function Haptics() {
 
       <footer className="w-full border-t-2 border-neutral-800 p-6 text-center mt-auto">
         <span className="font-mono text-[10px] text-neutral-600 uppercase tracking-widest block opacity-50">
-          Made by ... .- .- -.. / .- .... -- . -.. / ... .... .- .. -.- ....
+          Made by Saad Ahmed Shaikh
         </span>
       </footer>
     </main>
